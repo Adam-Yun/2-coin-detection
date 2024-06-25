@@ -48,7 +48,7 @@ async function startCamera() {
                 // facingMode: 'environment', // 'user' for front camera, 'environment' for back camera
                 // width: { min: 640, ideal: 1280, max: 1920 },
                 // height: { min: 480, ideal: 720, max: 1080 },
-                
+
                 facingMode: { ideal: 'environment' },
                 focusDistance: { min: 0.05, ideal: 0.12, max: 0.3 }
             }
@@ -126,8 +126,8 @@ upload.addEventListener('click', () => {
     // const width = 1920;
     // const height = 1080;
 
-    const width = 1000;
-    const height = 800;
+    const width = 1920;
+    const height = 1080;
 
     canvas.width = width;
     canvas.height = height;
