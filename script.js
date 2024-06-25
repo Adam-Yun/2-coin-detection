@@ -39,7 +39,18 @@ function connectionCheck(){
 
 async function startCamera() {
     try {
-        stream = await navigator.mediaDevices.getUserMedia({ video: true });
+
+        // const constraints = {
+        //     video: true
+        // };
+
+        const constraints = {
+            video: {
+                facingMode: 'environment' // 'user' for front camera, 'environment' for back camera
+            }
+        };
+
+        stream = await navigator.mediaDevices.getUserMedia(constraints);
         video.srcObject = stream;
         video.style.display = 'block';
         toggleCameraButton.textContent = 'Turn Off Camera';
