@@ -9,10 +9,9 @@
 <body>
     <div class="container">
         <h1>Camera Capture</h1>
-        <!-- <video id="video" autoplay></video> -->
-        <div class="video-container">
-            <video id="video" autoplay></video>
-        </div>
+        <video autoplay loop muted controls webkit-playsinline playsinline>
+            <source src="file.mp4" type="video/mp4">
+        </video>
         <button id="toggleCamera">Turn On Camera</button>
         <button id="capture">Capture</button>
         <canvas id="canvas"></canvas>
