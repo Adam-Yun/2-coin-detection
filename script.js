@@ -46,8 +46,9 @@ async function startCamera() {
         const constraints = {
             video: {
                 // facingMode: 'environment', // 'user' for front camera, 'environment' for back camera
-                width: { min: 640, ideal: 1280, max: 1920 },
-                height: { min: 480, ideal: 720, max: 1080 },
+                // width: { min: 640, ideal: 1280, max: 1920 },
+                // height: { min: 480, ideal: 720, max: 1080 },
+                
                 facingMode: { ideal: 'environment' },
                 focusDistance: { min: 0.05, ideal: 0.12, max: 0.3 }
             }
