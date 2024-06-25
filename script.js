@@ -118,8 +118,11 @@ window.addEventListener('load', () => {
 
 upload.addEventListener('click', () => {
 
-    const width = 1920;
-    const height = 1080;
+    // const width = 1920;
+    // const height = 1080;
+
+    const width = 1000;
+    const height = 800;
 
     canvas.width = width;
     canvas.height = height;
