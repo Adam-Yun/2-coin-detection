@@ -38,24 +38,22 @@ function connectionCheck(){
 
 async function startCamera() {
     try {
-        const devices = await navigator.mediaDevices.enumerateDevices();
-        const videoDevices = devices.filter(device => device.kind === 'videoinput');
-        
-        // Find the back camera based on label or other criteria
-        const backCamera = videoDevices.find(device => {
-            return device.label.toLowerCase().includes('back');
-            // You can refine this further based on your device's actual labels
-        });
 
-        // Use the back camera if found, otherwise fall back to any camera
+        // const constraints = {
+        //     video: true
+        // };
+
         const constraints = {
             video: {
-                deviceId: backCamera ? { exact: backCamera.deviceId } : undefined,
+                // facingMode: 'environment', // 'user' for front camera, 'environment' for back camera
+                width: { min: 640, ideal: 1280, max: 1920 },
+                height: { min: 480, ideal: 720, max: 1080 },
+                facingMode: { ideal: 'environment' },
+                focusDistance: { min: 0.05, ideal: 0.12, max: 0.3 }
             }
         };
 
-        const stream = await navigator.mediaDevices.getUserMedia(constraints);
-        const video = document.getElementById('videoElement');
+        stream = await navigator.mediaDevices.getUserMedia(constraints);
         video.srcObject = stream;
         video.style.display = 'block';
         toggleCameraButton.textContent = 'Turn Off Camera';
@@ -64,30 +62,6 @@ async function startCamera() {
         console.error('Error accessing the camera: ', error);
     }
 }
-
-
-// async function startCamera() {
-//     try {
-
-//         // const constraints = {
-//         //     video: true
-//         // };
-
-//         const constraints = {
-//             video: {
-//                 facingMode: 'environment' // 'user' for front camera, 'environment' for back camera
-//             }
-//         };
-
-//         stream = await navigator.mediaDevices.getUserMedia(constraints);
-//         video.srcObject = stream;
-//         video.style.display = 'block';
-//         toggleCameraButton.textContent = 'Turn Off Camera';
-//         captureButton.style.display = 'inline-block';
-//     } catch (error) {
-//         console.error('Error accessing the camera: ', error);
-//     }
-// }
 
 function stopCamera() {
     if (stream) {
