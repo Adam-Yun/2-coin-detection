@@ -38,18 +38,24 @@ function connectionCheck(){
 
 async function startCamera() {
     try {
+        const devices = await navigator.mediaDevices.enumerateDevices();
+        const videoDevices = devices.filter(device => device.kind === 'videoinput');
+        
+        // Find the back camera based on label or other criteria
+        const backCamera = videoDevices.find(device => {
+            return device.label.toLowerCase().includes('back');
+            // You can refine this further based on your device's actual labels
+        });
 
-        // const constraints = {
-        //     video: true
-        // };
-
+        // Use the back camera if found, otherwise fall back to any camera
         const constraints = {
             video: {
-                facingMode: 'environment' // 'user' for front camera, 'environment' for back camera
+                deviceId: backCamera ? { exact: backCamera.deviceId } : undefined,
             }
         };
 
-        stream = await navigator.mediaDevices.getUserMedia(constraints);
+        const stream = await navigator.mediaDevices.getUserMedia(constraints);
+        const video = document.getElementById('videoElement');
         video.srcObject = stream;
         video.style.display = 'block';
         toggleCameraButton.textContent = 'Turn Off Camera';
@@ -58,6 +64,30 @@ async function startCamera() {
         console.error('Error accessing the camera: ', error);
     }
 }
+
+
+// async function startCamera() {
+//     try {
+
+//         // const constraints = {
+//         //     video: true
+//         // };
+
+//         const constraints = {
+//             video: {
+//                 facingMode: 'environment' // 'user' for front camera, 'environment' for back camera
+//             }
+//         };
+
+//         stream = await navigator.mediaDevices.getUserMedia(constraints);
+//         video.srcObject = stream;
+//         video.style.display = 'block';
+//         toggleCameraButton.textContent = 'Turn Off Camera';
+//         captureButton.style.display = 'inline-block';
+//     } catch (error) {
+//         console.error('Error accessing the camera: ', error);
+//     }
+// }
 
 function stopCamera() {
     if (stream) {
