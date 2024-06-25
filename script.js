@@ -7,12 +7,11 @@ const gallery = document.getElementById('gallery');
 const toggleCameraButton = document.getElementById('toggleCamera');
 const upload = document.getElementById('upload')
 const checkConnection = document.getElementById('connectionCheck')
+const url = 'https://9d98-2001-f40-90b-261a-6d1f-7d57-f96d-2ec4.ngrok-free.app'
 
 let stream;
 
 function connectionCheck(){
-
-    const url = 'https://879d-2001-f40-90b-261a-9d50-fc47-e9f4-aaf7.ngrok-free.app'
 
     fetch(url + '/connectionCheck', {
         method: 'POST',
@@ -118,8 +117,6 @@ window.addEventListener('load', () => {
 });
 
 upload.addEventListener('click', () => {
-    
-    url = 'https://879d-2001-f40-90b-261a-9d50-fc47-e9f4-aaf7.ngrok-free.app';
 
     const width = 1920;
     const height = 1080;
